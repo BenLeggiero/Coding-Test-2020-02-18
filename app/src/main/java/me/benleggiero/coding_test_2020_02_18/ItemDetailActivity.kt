@@ -1,10 +1,10 @@
 package me.benleggiero.coding_test_2020_02_18
 
-import android.content.Intent
-import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
-import android.view.MenuItem
+import android.content.*
+import android.os.*
+import android.view.*
+import androidx.appcompat.app.*
+import com.google.android.material.snackbar.*
 import kotlinx.android.synthetic.main.activity_item_detail.*
 
 /**
@@ -43,8 +43,8 @@ class ItemDetailActivity : AppCompatActivity() {
             val fragment = ItemDetailFragment().apply {
                 arguments = Bundle().apply {
                     putString(
-                        ItemDetailFragment.ARG_ITEM_ID,
-                        intent.getStringExtra(ItemDetailFragment.ARG_ITEM_ID)
+                        ItemDetailFragment.argument_videoJsonString,
+                        intent.getStringExtra(ItemDetailFragment.argument_videoJsonString)
                     )
                 }
             }

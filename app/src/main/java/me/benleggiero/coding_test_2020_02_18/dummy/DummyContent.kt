@@ -1,7 +1,6 @@
 package me.benleggiero.coding_test_2020_02_18.dummy
 
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 /**
  * Helper class for providing sample content for user interfaces created by
@@ -9,7 +8,7 @@ import java.util.HashMap
  *
  * TODO: Replace all uses of this class before publishing your app.
  */
-object DummyContent {
+object __DummyContent {
 
     /**
      * An array of sample (dummy) items.

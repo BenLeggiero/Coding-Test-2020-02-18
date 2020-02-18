@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import me.benleggiero.coding_test_2020_02_18.dummy.*
 import me.benleggiero.coding_test_2020_02_18.search.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchQuery.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 
 /**
@@ -56,12 +57,28 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView(recyclerView: RecyclerView) {
-        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, twoPane)
+        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, emptyList<Video>(), twoPane)
+
+        searchEngine.performSearch(trending) { result ->
+            result.fold(
+                onSuccess = {
+                    runOnUiThread {
+                        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, it.videos, twoPane)
+                    }
+                },
+                onFailure = {
+                    runOnUiThread {
+                        recyclerView.adapter =
+                            SimpleItemRecyclerViewAdapter(this, listOf(Video.errorPlaceholder(it, this)), twoPane)
+                    }
+                }
+            )
+        }
     }
 
     class SimpleItemRecyclerViewAdapter(
         private val parentActivity: ItemListActivity,
-        private val values: List<DummyContent.DummyItem>,
+        private val values: List<Video>,
         private val twoPane: Boolean
     ) :
         RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder>() {
@@ -74,7 +91,7 @@ class ItemListActivity : AppCompatActivity() {
                 if (twoPane) {
                     val fragment = ItemDetailFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ItemDetailFragment.ARG_ITEM_ID, video.id)
+                            putString(ItemDetailFragment.argument_videoJsonString, video.jsonString())
                         }
                     }
                     parentActivity.supportFragmentManager
@@ -83,7 +100,7 @@ class ItemListActivity : AppCompatActivity() {
                         .commit()
                 } else {
                     val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                        putExtra(ItemDetailFragment.ARG_ITEM_ID, video.id)
+                        putExtra(ItemDetailFragment.argument_videoJsonString, video.jsonString())
                     }
                     v.context.startActivity(intent)
                 }
@@ -97,12 +114,12 @@ class ItemListActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            val item = values[position]
-            holder.idView.text = item.id
-            holder.contentView.text = item.content
+            val video = values[position]
+            holder.idView.text = video.title
+            holder.contentView.text = video.artist
 
             with(holder.itemView) {
-                tag = item
+                tag = video
                 setOnClickListener(onClickListener)
             }
         }

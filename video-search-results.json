@@ -1,6 +1,30 @@
 {
     "videos": [
         {
+            "id": "C93BA008-9F67-4E0F-97DD-D5CAE24A60F0",
+            "sources": [{
+                "file": "https://s3.amazonaws.com/interview-quiz-stuff/tos-trailer/master.m3u8"
+            }],
+            "title": "TOS-teaser",
+            "artist": ""
+        },
+        {
+            "id": "89286C5B-80C3-4167-A305-D9C6A71F5043",
+            "sources": [{
+                "file": "https://s3.amazonaws.com/interview-quiz-stuff/tos/master.m3u8"
+            }],
+            "title": "TOS-clip",
+            "artist": ""
+        },
+        {
+            "id": "0182EF9C-CB80-4741-BBC8-4C95930C0968",
+            "sources": [{
+                "file": "https://devstreaming-cdn.apple.com/videos/streaming/examples/bipbop_16x9/bipbop_16x9_variant.m3u8"
+            }],
+            "title": "Apple 16x9 basic stream",
+            "artist": "Apple"
+        },
+        {
             "id": "F8781B08-ACEF-435A-A616-45D688B25E29",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"

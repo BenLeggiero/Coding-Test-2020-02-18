@@ -1,15 +1,24 @@
-package me.benleggiero.coding_test_2020_02_18.search.dataStructures
+package me.benleggiero.coding_test_2020_02_18.search.serialization
 
+import me.benleggiero.coding_test_2020_02_18.search.VideoSearchDidComplete
 import java.net.URI
-
+import java.net.URL
 
 
 /**
  * The results of a video search
  */
-class VideoSearchResults(
+class VideoSearchResultsJson(
     val videos: List<Video>
 ) {
+
+    companion object {
+        fun read(url: URL, onComplete: VideoSearchDidComplete) {
+            
+        }
+    }
+
+
 
     class Video(
         val sources: List<Source>,

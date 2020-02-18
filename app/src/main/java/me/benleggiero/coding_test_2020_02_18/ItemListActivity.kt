@@ -1,12 +1,12 @@
 package me.benleggiero.coding_test_2020_02_18
 
 import android.content.*
+import android.net.*
 import android.os.*
 import android.view.*
 import android.widget.*
 import androidx.appcompat.app.*
 import androidx.recyclerview.widget.*
-import com.google.android.material.snackbar.*
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
@@ -40,9 +40,8 @@ class ItemListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.title = title
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        fab.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/BenLeggiero/Coding-Test-2020-02-18")))
         }
 
         if (item_detail_container != null) {

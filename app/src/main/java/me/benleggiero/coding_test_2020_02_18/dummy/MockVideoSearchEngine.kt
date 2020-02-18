@@ -1,11 +1,11 @@
 package me.benleggiero.coding_test_2020_02_18.dummy
 
-import me.benleggiero.coding_test_2020_02_18.search.VideoSearchDidComplete
-import me.benleggiero.coding_test_2020_02_18.search.VideoSearchEngine
-import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchQuery
-import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults
-import me.benleggiero.coding_test_2020_02_18.search.serialization.VideoSearchResultsJson
-import java.net.URL
+import me.benleggiero.coding_test_2020_02_18.search.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchQuery.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
+import me.benleggiero.coding_test_2020_02_18.search.serialization.*
+import java.net.*
 import kotlin.Result.Companion.success
 
 class MockVideoSearchEngine: VideoSearchEngine {
@@ -14,15 +14,19 @@ class MockVideoSearchEngine: VideoSearchEngine {
 
 
     override fun performSearch(query: VideoSearchQuery, onComplete: VideoSearchDidComplete) {
-        filteredResults(query= query) { results ->
-            TODO()
+        filteredResults(query= query) { result ->
+            onComplete(result)
         }
     }
 
 
     private fun filteredResults(query: VideoSearchQuery, onComplete: VideoSearchDidComplete) {
-        fetchResultsOrUseCache { results ->
-            onComplete(success(results.filter { it.isMatch(query) }))
+        fetchResultsOrUseCache { result ->
+            onComplete(result.map { results ->
+                results.filter { video ->
+                    video.isMatch(query)
+                }
+            })
         }
     }
 
@@ -44,8 +48,8 @@ class MockVideoSearchEngine: VideoSearchEngine {
 
 
     private fun fetchResults(onComplete: VideoSearchDidComplete) {
-        VideoSearchResultsJson.read(mockURL) { result ->
-
+        VideoSearchResultsJson.load(mockURL) { result ->
+            onComplete(result.mapCatching { VideoSearchResults(it) ?: throw ImproperlyFormattedJson(it) })
         }
     }
 
@@ -55,4 +59,9 @@ class MockVideoSearchEngine: VideoSearchEngine {
         val mockUrlString = "https://benleggiero.github.io/Coding-Test-2020-02-18/video-search-results.json"
         val mockURL = URL(mockUrlString)
     }
+}
+
+private fun Video.isMatch(query: VideoSearchQuery) = when (query) {
+    is trending -> true
+    is freeformText -> this.anyTextContains(query.userTextSearch)
 }

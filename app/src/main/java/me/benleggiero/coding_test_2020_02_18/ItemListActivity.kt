@@ -1,19 +1,18 @@
 package me.benleggiero.coding_test_2020_02_18
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-
-import me.benleggiero.coding_test_2020_02_18.dummy.DummyContent
+import android.content.*
+import android.os.*
+import android.view.*
+import android.widget.*
+import androidx.appcompat.app.*
+import androidx.recyclerview.widget.*
+import com.google.android.material.snackbar.*
 import kotlinx.android.synthetic.main.activity_item_list.*
-import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
+import kotlinx.android.synthetic.main.item_list_content.view.*
+import me.benleggiero.coding_test_2020_02_18.dummy.*
+import me.benleggiero.coding_test_2020_02_18.search.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 
 /**
  * An activity representing a list of Pings. This activity
@@ -30,6 +29,8 @@ class ItemListActivity : AppCompatActivity() {
      * device.
      */
     private var twoPane: Boolean = false
+
+    private val searchEngine: VideoSearchEngine = MockVideoSearchEngine() // TODO: Replace this with a real search engine when the server component is ready
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,11 +70,11 @@ class ItemListActivity : AppCompatActivity() {
 
         init {
             onClickListener = View.OnClickListener { v ->
-                val item = v.tag as DummyContent.DummyItem
+                val video = v.tag as Video
                 if (twoPane) {
                     val fragment = ItemDetailFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                            putString(ItemDetailFragment.ARG_ITEM_ID, video.id)
                         }
                     }
                     parentActivity.supportFragmentManager
@@ -82,7 +83,7 @@ class ItemListActivity : AppCompatActivity() {
                         .commit()
                 } else {
                     val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                        putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                        putExtra(ItemDetailFragment.ARG_ITEM_ID, video.id)
                     }
                     v.context.startActivity(intent)
                 }

@@ -43,7 +43,7 @@ class VideoSearchResults(
         }
 
         companion object {
-            operator fun invoke(json: VideoSearchResultsJson.Video): Video? {
+            operator fun invoke(json: VideoSearchResultsJson.VideoJson): Video? {
                 return Video(
                     sources = json.sources.map { Source(it) },
                     title = json.title,
@@ -62,7 +62,7 @@ class VideoSearchResults(
         ) {
 
             companion object {
-                operator fun invoke(json: VideoSearchResultsJson.Video.Source) = Source(
+                operator fun invoke(json: VideoSearchResultsJson.VideoJson.SourceJson) = Source(
                     videoUrl = URL(json.videoUrl)
                 )
             }

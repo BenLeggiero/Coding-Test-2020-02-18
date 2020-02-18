@@ -9,7 +9,7 @@ import java.net.*
  * The results of a video search
  */
 class VideoSearchResultsJson(
-    val videos: List<Video>
+    val videos: List<VideoJson>
 ) {
 
     companion object {
@@ -30,15 +30,15 @@ class VideoSearchResultsJson(
 
 
 
-    class Video(
-        val sources: List<Source>,
+    class VideoJson(
+        val sources: List<SourceJson>,
         val title: String,
         val artist: String?,
         val description: String?,
         val posterUri: String?
     ) {
 
-        class Source(
+        class SourceJson(
             val videoUrl: String
             // In the future, perhaps a resolution or format would go here, to help choose the proper source at runtime
         )

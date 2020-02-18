@@ -1,6 +1,7 @@
 {
     "videos": [
         {
+            "id": "F8781B08-ACEF-435A-A616-45D688B25E29",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
             }],
@@ -10,6 +11,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg"
         },
         {
+            "id": "2A20A397-C342-4498-B31D-3382FE68B879",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
             }],
@@ -19,6 +21,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ElephantsDream.jpg"
         },
         {
+            "id": "8B36C265-8602-43D7-914F-919B8845C7C7",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
             }],
@@ -28,6 +31,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerBlazes.jpg"
         },
         {
+            "id": "1C720C2C-D9ED-459F-89FE-260381377EE7",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
             }],
@@ -37,6 +41,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerEscapes.jpg"
         },
         {
+            "id": "55DD6462-0FCA-47DF-BFFE-2357A7C5D884",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
             }],
@@ -46,6 +51,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerFun.jpg"
         },
         {
+            "id": "DFD8B145-3B50-462E-B596-FD598C851815",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
             }],
@@ -55,6 +61,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerJoyrides.jpg"
         },
         {
+            "id": "43F82853-CF8B-4E13-8DAC-4BF3502C08C7",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4"
             }],
@@ -64,6 +71,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/ForBiggerMeltdowns.jpg"
         },
         {
+            "id": "3FF2E6E5-68A5-43EB-AB9E-6AC88893C49F",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4"
             }],
@@ -73,6 +81,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/Sintel.jpg"
         },
         {
+            "id": "CDFA1690-3ED9-4E41-B6F7-C743EA88D4FA",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4"
             }],
@@ -82,6 +91,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/SubaruOutbackOnStreetAndDirt.jpg"
         },
         {
+            "id": "E614E184-CC37-4E85-BE39-885B6B820D9D",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4"
             }],
@@ -91,6 +101,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg"
         },
         {
+            "id": "69F7CC17-3694-45D8-98E2-D9A2CF975055",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/VolkswagenGTIReview.mp4"
             }],
@@ -100,6 +111,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/VolkswagenGTIReview.jpg"
         },
         {
+            "id": "4DBC1333-E816-4394-B2EB-04E303524436",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4"
             }],
@@ -109,6 +121,7 @@
             "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/WeAreGoingOnBullrun.jpg"
         },
         {
+            "id": "7095BE10-935C-4713-9C7B-A485B253793A",
             "sources": [{
                 "file": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4"
             }],

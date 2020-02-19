@@ -2,6 +2,7 @@ package me.benleggiero.coding_test_2020_02_18.search.serialization
 
 import com.google.gson.*
 import kotlinx.coroutines.*
+import me.benleggiero.coding_test_2020_02_18.convenienceExtensions.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.Video.*
@@ -43,17 +44,18 @@ class VideoSearchResultsJson(
         val title: String,
         val artist: String?,
         val description: String?,
-        val poster: String?
+        poster: String?
     ) {
+        val poster: String? = poster?.nullifyingNullString()
+
         constructor(video: Video): this(
             id= video.id,
             sources= video.sources.map(::SourceJson),
             title= video.title,
             artist= video.artist,
             description= video.description,
-            poster= video.posterUrl.toString()
+            poster= video.posterUri.toString()
         )
-
 
 
         fun jsonString(): String =
@@ -81,7 +83,7 @@ class VideoSearchResultsJson(
             // In the future, perhaps a resolution or format would go here, to help choose the proper source at runtime
         ) {
             constructor(source: Source): this(
-                file = source.videoUrl.toString()
+                file = source.videoUri.toString()
             )
         }
     }

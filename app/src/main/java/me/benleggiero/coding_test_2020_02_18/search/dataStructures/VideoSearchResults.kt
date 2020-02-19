@@ -1,10 +1,11 @@
 package me.benleggiero.coding_test_2020_02_18.search.dataStructures
 
 import android.content.*
+import android.net.*
 import me.benleggiero.coding_test_2020_02_18.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchQuery.*
 import me.benleggiero.coding_test_2020_02_18.search.serialization.*
 import me.benleggiero.coding_test_2020_02_18.search.serialization.VideoSearchResultsJson.*
-import java.net.*
 
 
 
@@ -38,8 +39,11 @@ class VideoSearchResults(
         val title: String,
         val artist: String?,
         val description: String?,
-        val posterUrl: URL?
+        val posterUri: Uri?
     ) {
+
+        val filetypes: List<Filetype>
+            get() = sources.mapNotNull { Filetype(it.videoUri) }
 
         fun anyTextContains(userTextSearch: String): Boolean {
             return title.contains(userTextSearch)
@@ -62,12 +66,12 @@ class VideoSearchResults(
                     title = json.title,
                     artist = json.artist,
                     description = json.description,
-                    posterUrl = json.poster?.let { runCatching { URL(it) }.getOrNull() }
+                    posterUri = json.poster?.let { runCatching { Uri.parse(it) }.getOrNull() }
                 )
             }
 
 
-            fun fromJsonString(jsonString: String): Video? {
+            operator fun invoke(jsonString: String): Video? {
                 return Video(VideoJson(jsonString= jsonString) ?: return null)
             }
 
@@ -79,7 +83,7 @@ class VideoSearchResults(
                     description = context.getString(R.string.video_loading_error_description___message) + it.message,
                     artist = null,
                     sources = emptyList(),
-                    posterUrl = null
+                    posterUri = null
                 )
             }
         }
@@ -87,13 +91,13 @@ class VideoSearchResults(
 
 
         class Source(
-            val videoUrl: URL
+            val videoUri: Uri
             // In the future, perhaps a resolution or format would go here, to help choose the proper source at runtime
         ) {
 
             companion object {
                 operator fun invoke(json: VideoJson.SourceJson) = Source(
-                    videoUrl = URL(json.file)
+                    videoUri = Uri.parse(json.file)
                 )
             }
         }

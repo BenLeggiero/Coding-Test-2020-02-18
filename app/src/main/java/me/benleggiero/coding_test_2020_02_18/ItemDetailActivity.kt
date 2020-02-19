@@ -2,10 +2,12 @@ package me.benleggiero.coding_test_2020_02_18
 
 import android.content.*
 import android.os.*
+import android.util.*
 import android.view.*
 import androidx.appcompat.app.*
-import com.google.android.material.snackbar.*
 import kotlinx.android.synthetic.main.activity_item_detail.*
+import kotlinx.android.synthetic.main.item_detail.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 
 /**
  * An activity representing a single Item detail screen. This
@@ -15,15 +17,20 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
  */
 class ItemDetailActivity : AppCompatActivity() {
 
+    /**
+     * The dummy content this fragment is presenting.
+     */
+    private var video: Video? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_item_detail)
         setSupportActionBar(detail_toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own detail action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        val videoJsonString = intent.getStringExtra(VideoPlayerFragment.argument_videoJsonString)
+            ?: return let { Log.e("", "No JSON string!") }
+
+        video = Video(jsonString= videoJsonString)
 
         // Show the Up button in the action bar.
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -40,11 +47,11 @@ class ItemDetailActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-            val fragment = ItemDetailFragment().apply {
+            val fragment = VideoPlayerFragment().apply {
                 arguments = Bundle().apply {
                     putString(
-                        ItemDetailFragment.argument_videoJsonString,
-                        intent.getStringExtra(ItemDetailFragment.argument_videoJsonString)
+                        VideoPlayerFragment.argument_videoJsonString,
+                        videoJsonString
                     )
                 }
             }

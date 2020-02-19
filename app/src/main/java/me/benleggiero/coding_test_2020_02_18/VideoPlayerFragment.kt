@@ -54,7 +54,6 @@ class VideoPlayerFragment : Fragment() {
             rootView.posterImageView.setImageURI(Uri.parse(posterImageUrl.toString()))
             if (!playbackWorksheet.isReadyToPlay) {
                 rootView.posterImageView.visibility = VISIBLE
-                navigationControlsContainer.visibility = INVISIBLE
             }
         }
 

@@ -88,9 +88,9 @@ class ItemListActivity : AppCompatActivity() {
             onClickListener = View.OnClickListener { v ->
                 val video = v.tag as Video
                 if (twoPane) {
-                    val fragment = ItemDetailFragment().apply {
+                    val fragment = VideoPlayerFragment().apply {
                         arguments = Bundle().apply {
-                            putString(ItemDetailFragment.argument_videoJsonString, video.jsonString())
+                            putString(VideoPlayerFragment.argument_videoJsonString, video.jsonString())
                         }
                     }
                     parentActivity.supportFragmentManager
@@ -99,7 +99,7 @@ class ItemListActivity : AppCompatActivity() {
                         .commit()
                 } else {
                     val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                        putExtra(ItemDetailFragment.argument_videoJsonString, video.jsonString())
+                        putExtra(VideoPlayerFragment.argument_videoJsonString, video.jsonString())
                     }
                     v.context.startActivity(intent)
                 }

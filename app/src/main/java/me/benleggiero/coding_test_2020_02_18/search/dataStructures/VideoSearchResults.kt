@@ -67,7 +67,7 @@ class VideoSearchResults(
             }
 
 
-            fun fromJsonString(jsonString: String): Video? {
+            operator fun invoke(jsonString: String): Video? {
                 return Video(VideoJson(jsonString= jsonString) ?: return null)
             }
 

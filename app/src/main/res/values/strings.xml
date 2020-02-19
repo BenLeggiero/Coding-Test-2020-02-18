@@ -2,6 +2,10 @@
     <string name="app_name" tools:ignore="TypographyDashes">Coding Test 2020-02-18</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="loading_with_ellipsis">Loading...</string>
+
+    <string name="artist_template">By %s</string>
+
     <string name="video_loading_error_title">Error loading video</string>
     <string name="video_loading_error_description___message">An error occurred while loading one or more videos. Please let the developers know that the error said this: \n\n</string>
+    <string name="generic_poster_content_desc">A poster image for the video</string>
 </resources>

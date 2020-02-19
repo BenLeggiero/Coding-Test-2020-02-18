@@ -1,5 +1,6 @@
 package me.benleggiero.coding_test_2020_02_18
 
+import android.net.*
 import android.os.*
 import android.view.*
 import android.view.View.*
@@ -10,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_item_detail.*
 import kotlinx.android.synthetic.main.item_detail.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 import me.benleggiero.coding_test_2020_02_18.VideoPlayerFragment.LoadingVars.UserPlayState.*
-import me.benleggiero.coding_test_2020_02_18.convenienceExtensions.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 
 /**
@@ -50,22 +50,35 @@ class VideoPlayerFragment : Fragment() {
         // Show the dummy content as text in a TextView.
         rootView.item_detail.text = video?.description ?: ""
 
+        video?.posterUri?.let { posterImageUrl ->
+            rootView.posterImageView.setImageURI(Uri.parse(posterImageUrl.toString()))
+            if (!playbackWorksheet.isReadyToPlay) {
+                rootView.posterImageView.visibility = VISIBLE
+                navigationControlsContainer.visibility = INVISIBLE
+            }
+        }
+
         rootView.playPauseButton.setOnClickListener { view ->
             Snackbar.make(view, getString(R.string.loading_with_ellipsis), Snackbar.LENGTH_SHORT).show()
         }
 
-        val videoUrl = video
+        val videoUri = video
             ?.sources
             ?.firstOrNull() // TODO: Pick the best current source
-            ?.videoUrl
+            ?.videoUri
 
-        if (null != videoUrl) {
-            rootView.playerView.setVideoUrl(videoUrl)
+        if (null != videoUri) {
+            rootView.playerView.setVideoURI(videoUri)
             rootView.playerView.setOnPreparedListener { mediaPlayer ->
                 bufferingSpinner.visibility = GONE
+                posterImageView.visibility = INVISIBLE
+                navigationControlsContainer.visibility = VISIBLE
+
                 videoHolder.minimumHeight = 0
-                videoHolder.layoutParams.height = MATCH_PARENT
+                videoHolder.layoutParams.height = WRAP_CONTENT
+
                 playerView.seekTo(1)
+
                 playbackWorksheet.isReadyToPlay = true
                 if (playbackWorksheet.playWhenReady) {
                     playerView.start()
@@ -88,6 +101,9 @@ class VideoPlayerFragment : Fragment() {
                 playing -> playerView.pause()
                 paused -> playerView.start()
             }
+            playbackWorksheet.userPlayState = playbackWorksheet.userPlayState.toggled()
+
+            playPauseButton.isChecked = playbackWorksheet.userPlayState == playing
         }
         else {
             playbackWorksheet.playWhenReady = true
@@ -112,7 +128,13 @@ class VideoPlayerFragment : Fragment() {
     ) {
         enum class UserPlayState {
             playing,
-            paused
+            paused,
+            ;
+
+            fun toggled() = when (this) {
+                playing -> paused
+                paused -> playing
+            }
         }
     }
 }

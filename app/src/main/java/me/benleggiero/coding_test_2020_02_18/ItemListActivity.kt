@@ -12,6 +12,7 @@ import kotlinx.android.synthetic.main.item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import me.benleggiero.coding_test_2020_02_18.dummy.*
 import me.benleggiero.coding_test_2020_02_18.search.*
+import me.benleggiero.coding_test_2020_02_18.search.dataStructures.Filetype.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchQuery.*
 import me.benleggiero.coding_test_2020_02_18.search.dataStructures.VideoSearchResults.*
 
@@ -32,6 +33,7 @@ class ItemListActivity : AppCompatActivity() {
     private var twoPane: Boolean = false
 
     private val searchEngine: VideoSearchEngine = MockVideoSearchEngine() // TODO: Replace this with a real search engine when the server component is ready
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,14 +57,16 @@ class ItemListActivity : AppCompatActivity() {
         setupRecyclerView(item_list)
     }
 
+
     private fun setupRecyclerView(recyclerView: RecyclerView) {
         recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, emptyList<Video>(), twoPane)
 
-        searchEngine.performSearch(trending) { result ->
+        searchEngine.performSearch(filetype(hls)) { result ->
             result.fold(
                 onSuccess = {
                     runOnUiThread {
-                        recyclerView.adapter = SimpleItemRecyclerViewAdapter(this, it.videos, twoPane)
+                        recyclerView.adapter =
+                            SimpleItemRecyclerViewAdapter(this, it.videos, twoPane)
                     }
                 },
                 onFailure = {
@@ -115,7 +119,7 @@ class ItemListActivity : AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val video = values[position]
             holder.idView.text = video.title
-            holder.contentView.text = video.artist
+            holder.contentView.text = parentActivity.getString(R.string.artist_template, video.artist)
 
             with(holder.itemView) {
                 tag = video

@@ -64,4 +64,5 @@ class MockVideoSearchEngine: VideoSearchEngine {
 private fun Video.isMatch(query: VideoSearchQuery) = when (query) {
     is trending -> true
     is freeformText -> this.anyTextContains(query.userTextSearch)
+    is filetype -> this.filetypes.contains(query.filetype)
 }

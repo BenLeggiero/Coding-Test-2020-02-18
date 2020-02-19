@@ -7,8 +7,9 @@ A coding test I performed on 2020-02-18
 
 Here are things I started working on, or intended to work on, but which are not complete at time of submission:
 
-* HLS Video Player
-    * The requirement to use a video player which can play HLS content was notably complex; Android comes with a built-in video player widget that can handle MPEG content (`mp4`, `h.264`, et al), but it cannot yet play HLS content. Because of this, using [Google's `ExoPlayer`](https://github.com/google/ExoPlayer) involved a lot of boilerplate and setup that couldn't be integrated into this app in one workday.
-    * See branch [`feature/HLS-Video-Player`](https://github.com/BenLeggiero/Coding-Test-2020-02-18/tree/feature/HLS-Video-Player) for the progress I made before the end of the test
+* Seek bar
+    * I think this would be reasonably straightforward, but I just didn't have time to get to it. You'll see some references to it in the code because of this.
+* Design
+    * Since the time constraints only allowed for "just get it working and then ship it", I couldn't spend any time on the app's design. As such, I just used the default Android "Master-Detail" design.
 * Documentation
     * Normally, I document every single API I write. However, because of the time constraints of this assessment, I forewent documentation to rebalance the Quality-Time-Budget triangle closer to Time

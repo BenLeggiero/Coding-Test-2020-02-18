@@ -9,13 +9,20 @@
     <FrameLayout
         android:id="@+id/videoHolder"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="200dp"
         android:layout_weight="1">
 
         <VideoView
             android:id="@+id/playerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/posterImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/generic_poster_content_desc"
+            android:visibility="invisible" />
 
         <ProgressBar
             android:id="@+id/bufferingSpinner"
@@ -26,10 +33,12 @@
     </FrameLayout>
 
     <LinearLayout
+        android:id="@+id/navigationControlsContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="invisible" >
 
         <ToggleButton
             android:id="@+id/playPauseButton"
@@ -45,7 +54,8 @@
             style="@style/Widget.AppCompat.SeekBar"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:max="1" />
+            android:max="1"
+            android:visibility="invisible" />
     </LinearLayout>
 
     <TextView

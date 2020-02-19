@@ -5,16 +5,20 @@
             "sources": [{
                 "file": "https://s3.amazonaws.com/interview-quiz-stuff/tos-trailer/master.m3u8"
             }],
-            "title": "TOS-teaser",
-            "artist": ""
+            "title": "Tears of Steel - Teaser",
+            "artist": "Blender Foundation",
+            "description": "This is a teaser trailer for from Tears of Steel, which was realized with crowd-funding by users of the open source 3D creation tool Blender. Target was to improve and test a complete open and free pipeline for visual effects in film - and to make a compelling sci-fi film in Amsterdam, the Netherlands.  The film itself, and all raw material used for making it, have been released under the Creatieve Commons 3.0 Attribution license. Visit the tearsofsteel.org website to find out more about this, or to purchase the 4-DVD box with a lot of extras.  (CC) Blender Foundation - http://www.tearsofsteel.org",
+            "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg"
         },
         {
             "id": "89286C5B-80C3-4167-A305-D9C6A71F5043",
             "sources": [{
                 "file": "https://s3.amazonaws.com/interview-quiz-stuff/tos/master.m3u8"
             }],
-            "title": "TOS-clip",
-            "artist": ""
+            "title": "Tears of Steel - Clip",
+            "artist": "Blender Foundation",
+            "description": "This is a clip from Tears of Steel, which was realized with crowd-funding by users of the open source 3D creation tool Blender. Target was to improve and test a complete open and free pipeline for visual effects in film - and to make a compelling sci-fi film in Amsterdam, the Netherlands.  The film itself, and all raw material used for making it, have been released under the Creatieve Commons 3.0 Attribution license. Visit the tearsofsteel.org website to find out more about this, or to purchase the 4-DVD box with a lot of extras.  (CC) Blender Foundation - http://www.tearsofsteel.org",
+            "poster": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/TearsOfSteel.jpg"
         },
         {
             "id": "0182EF9C-CB80-4741-BBC8-4C95930C0968",
